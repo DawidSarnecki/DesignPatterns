@@ -40,15 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountNumberGenerator.cs" />
-    <Compile Include="BankAccount.cs" />
+    <Compile Include="Context\Tools\AccountNumberGenerator.cs" />
+    <Compile Include="Context\BankAccount.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="MyICommand.cs" />
+    <Compile Include="PatternStructure\MyICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receiver.cs" />
-    <Compile Include="Transfer.cs" />
-    <Compile Include="TransferCommand.cs" />
+    <Compile Include="PatternStructure\TransferCommand.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

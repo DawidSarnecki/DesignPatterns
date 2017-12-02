@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Command
 {
@@ -22,9 +18,21 @@ namespace Command
         }
         public void TransferMoney(int transferValue)
         {
-            BankAccount.MakeTransfer(_accountFirst, _accountSecond, transferValue);
-            _accountFirst.ShowBalance();
-            _accountSecond.ShowBalance();
+            //preparation of transfer
+            MyICommand firstCommnad = new TransferCommand(_accountFirst, _accountSecond, transferValue);
+
+            //execution
+            if (firstCommnad.CanExecute())
+            {
+                firstCommnad.Execute();
+            }
+            else
+            {
+                Console.WriteLine("Can't execute transer");
+            }
+
+            //without checking with CanExecute() operation is not allowed becouse transfer was executed yet;
+            firstCommnad.Execute();
         }
     }
 }

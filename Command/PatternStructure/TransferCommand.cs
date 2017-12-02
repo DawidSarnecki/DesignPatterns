@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Command
 {
@@ -20,6 +16,7 @@ namespace Command
             _receiverAccount = receiverAccount;
             _transferValue = transferValue;
         }
+
         public bool CanExecute()
         {
             return !isExecuted && _transferValue > 0;
@@ -29,10 +26,13 @@ namespace Command
         {
             if (isExecuted)
             {
-                Console.WriteLine("Transfer was relased yet.");
+                Console.WriteLine("Transfer was executed yet.");
+                return;
             }
 
-            BankAccount.MakeTransfer(_senderAccount, _receiverAccount, _transferValue);
+            isExecuted = BankAccount.MakeTransfer(_senderAccount, _receiverAccount, _transferValue);
+            _senderAccount.ShowBalance();
+            _receiverAccount.ShowBalance();
         }
     }
 }
