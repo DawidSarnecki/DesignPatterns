@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,9 +44,9 @@
     <Compile Include="Context\Tools\AccountNumberGenerator.cs" />
     <Compile Include="Context\BankAccount.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="PatternStructure\MyICommand.cs" />
+    <Compile Include="Context\TransferData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PatternStructure\TransferCommand.cs" />
+    <Compile Include="PatternStructure\RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

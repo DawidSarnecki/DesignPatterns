@@ -1,4 +1,6 @@
 ﻿using System;
+using Command.Context;
+using System.Windows.Input;
 
 namespace Command
 {
@@ -6,6 +8,7 @@ namespace Command
     {
         BankAccount _accountFirst = new BankAccount();
         BankAccount _accountSecond = new BankAccount();
+
         public Client()
         {
             Initialize();
@@ -18,13 +21,33 @@ namespace Command
         }
         public void TransferMoney(int transferValue)
         {
-            //preparation of transfer
-            MyICommand firstCommnad = new TransferCommand(_accountFirst, _accountSecond, transferValue);
+            TransferData firstDateSet = new TransferData() {
+                                                                SenderAccount = _accountFirst,
+                                                                ReceiverAccount = _accountSecond,
+                                                                transferValue = 100
+                                                            };
+            ICommand transferCommand = new RelayCommand(
+                (object parameter) =>
+            {
+                TransferData data = (TransferData)parameter;
+                if (data.isExecuted)
+                {
+                    Console.WriteLine("Transfer was executed yet.");
+                    return;
+                }
+                BankAccount.MakeTransfer(data.SenderAccount, data.ReceiverAccount, data.transferValue);
+                data.isExecuted = true;
+            },
+                (object parameter) =>
+                {
+                    TransferData data = (TransferData)parameter;
+                    return !data.isExecuted && data.transferValue > 0;
+                });
 
             //execution
-            if (firstCommnad.CanExecute())
+            if (transferCommand.CanExecute(firstDateSet))
             {
-                firstCommnad.Execute();
+                transferCommand.Execute(firstDateSet);
             }
             else
             {
@@ -32,7 +55,7 @@ namespace Command
             }
 
             //without checking with CanExecute() operation is not allowed becouse transfer was executed yet;
-            firstCommnad.Execute();
+            transferCommand.Execute(firstDateSet);
         }
     }
 }
