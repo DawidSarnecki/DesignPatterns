@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
         xmlns:vm="clr-namespace:MVVM.ViewModel"
+        xmlns:converter="clr-namespace:MVVM.Converter"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.DataContext>
         <vm:ViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <converter:BooleanToColorConverter x:Key="booleanToColor"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1* "/>
@@ -20,7 +24,8 @@
             Sum:
             <Run Foreground="Black" Text="{Binding Path=Sum, Mode=OneWay}" />
         </TextBlock>
-        <TextBox x:Name="ViewedAmount" Grid.Row="1" FontSize="20" Text="0" TextAlignment="Right"/>
+        <TextBox x:Name="ViewedAmount" Grid.Row="1" FontSize="20" Text="0" TextAlignment="Right"
+                 Foreground="{Binding ElementName=AddButton, Path=IsEnabled, Mode=OneWay, Converter={StaticResource booleanToColor}}"/>
         <Button x:Name="AddButton" Content="Add" Grid.Row="2" FontSize="20" Margin="10" Command="{Binding AddAmount}" CommandParameter="{Binding ElementName=ViewedAmount, Path=Text}"/>
     </Grid>
 </Window>
