@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1* "/>
+            <RowDefinition Height="1* "/>
+            <RowDefinition Height="1* "/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" FontSize="20" Margin="5">
+            Sum:
+            <Run Foreground="Black" Text="0" />
+        </TextBlock>
+        <TextBox x:Name="ViewedAmount" Grid.Row="1" FontSize="20" Text="0" TextAlignment="Right"/>
+        <Button x:Name="AddButton" Content="Add" Grid.Row="2" FontSize="20" Margin="10"/>
     </Grid>
 </Window>
