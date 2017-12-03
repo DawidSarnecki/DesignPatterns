@@ -17,7 +17,7 @@ namespace MVVM.Model
             Limit = limit;
         }
 
-        private bool isAmountCorrect(decimal amount)
+        public bool isAmountCorrect(decimal amount)
         {
             return !isAmountOverLimit(amount) && amount > 0;
         }
