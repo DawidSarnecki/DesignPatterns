@@ -12,7 +12,7 @@ namespace MVVM.ViewModel
 
     public class ViewModel : INotifyPropertyChanged
     {
-        private Model model = new Model(100,0);
+        private Model model = new Model(0, 100);
         private ICommand addAmount;
 
         public ICommand AddAmount

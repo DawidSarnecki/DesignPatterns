@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
+        xmlns:vm="clr-namespace:MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <vm:ViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1* "/>
@@ -14,9 +18,9 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Left" FontSize="20" Margin="5">
             Sum:
-            <Run Foreground="Black" Text="0" />
+            <Run Foreground="Black" Text="{Binding Path=Sum, Mode=OneWay}" />
         </TextBlock>
         <TextBox x:Name="ViewedAmount" Grid.Row="1" FontSize="20" Text="0" TextAlignment="Right"/>
-        <Button x:Name="AddButton" Content="Add" Grid.Row="2" FontSize="20" Margin="10"/>
+        <Button x:Name="AddButton" Content="Add" Grid.Row="2" FontSize="20" Margin="10" Command="{Binding AddAmount}" CommandParameter="{Binding ElementName=ViewedAmount, Path=Text}"/>
     </Grid>
 </Window>
