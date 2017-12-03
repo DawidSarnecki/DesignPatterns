@@ -15,6 +15,7 @@ namespace MVC.Model
         {
             Sum = sum;
             Limit = limit;
+            OnSumChanged(Sum, Limit);
         }
 
         private bool isAmountCorrect(decimal amount)
@@ -33,10 +34,27 @@ namespace MVC.Model
             if (isAmountCorrect(amount))
             {
                 Sum += amount;
+                OnSumChanged(Sum, Limit);
                 return;
             }
 
             throw new ArgumentOutOfRangeException("Incorrect amount.");
         }
+
+        // add delegate (event type)
+        public delegate void ChangedSumEventHandler(decimal sum, decimal limit);
+
+        // add event    
+        public event ChangedSumEventHandler SumChanged;
+
+        //helper method
+        private void OnSumChanged(decimal sum, decimal limit)
+        {
+            if (SumChanged != null)
+            {
+                SumChanged(sum, limit);
+            }
+        }
+
     }
 }

@@ -9,12 +9,6 @@ namespace MVC.View
 {
     public class View
     {
-        private Calculator _model;
-        public View(Calculator model)
-        {
-            _model = model;
-        }
-
         private static void DisplayText(string textToDisplay, bool isEndLine = true)
         {
             if (isEndLine)
@@ -31,9 +25,9 @@ namespace MVC.View
             DisplayText("Hello!!!!");
         }
 
-        public void DispalyStatus()
+        public void DispalyStatus(decimal sum, decimal limit)
         {
-            DisplayText($"Sum = { _model.Sum}, Limit = {_model.Limit}");
+            DisplayText($"Sum = {sum}, Limit = {limit}");
         }
 
         public void DisplayGoodbye()

@@ -16,7 +16,8 @@ namespace MVC.Controller
         public Controller(decimal limit)
         {
             _model = new Calculator(limit, 0);
-            _view = new View(_model);
+            _view = new View();
+            _model.SumChanged += _view.DispalyStatus;
         }
 
         public void Run()
@@ -27,7 +28,8 @@ namespace MVC.Controller
             // main loop
             do
             {
-                _view.DispalyStatus();
+                //now we don't need this method, now status is displayed automatically using event
+                //_view.DispalyStatus();
                 string input = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(input))
